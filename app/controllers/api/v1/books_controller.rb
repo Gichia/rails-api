@@ -1,5 +1,9 @@
-class BooksController < ApplicationController
-  before_action :set_book, only: %i[ show update destroy ]
+# frozen_string_literal: true
+
+# Controller for creating and updating book resources
+class Api::V1::BooksController < ApplicationController
+  # Comment form for creating
+  before_action :set_book, only: %i[show update destroy]
 
   # GET /books
   def index
@@ -39,13 +43,14 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def book_params
-      params.require(:book).permit(:title, :body)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def book_params
+    params.require(:book).permit(:title, :body)
+  end
 end
